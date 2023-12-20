@@ -164,6 +164,15 @@ namespace Easysave_v2._0.view
             SourcePathTextBox.Text = "Enter the source path here";
             TargetPathTextBox.Text = "Enter the target path here";
             BackupNameTextBox.Text = "BackupJob_";
+            SaveBackupButton.Content = "Save Backup";
+            SaveBackupButton.FontSize = 15;
+            RunBackupButton.Content = "Run Backup";
+            RunBackupButton.FontSize = 15;
+            ExitButton.Content = "Exit";
+            EncryptionExtentionsButton.Content = "Encryption Extentions";
+            EncryptionExtentionsButton.FontSize = 10;
+            BlacklistSoftwaresButton.Content = "Blacklist Softwares";
+
         }
 
         private void FrenchButton_Clicked(object sender, RoutedEventArgs e)
@@ -179,6 +188,14 @@ namespace Easysave_v2._0.view
             SourcePathTextBox.Text = "Entrez le chemin source ici";
             TargetPathTextBox.Text = "Entrez le chemin cible ici";
             BackupNameTextBox.Text = "BackupJob_";
+            SaveBackupButton.Content = "Enregistrer la sauvegarde";
+            SaveBackupButton.FontSize = 13;
+            RunBackupButton.Content = "Exécuter la sauvegarde";
+            RunBackupButton.FontSize = 14;
+            ExitButton.Content = "Sortie";
+            EncryptionExtentionsButton.Content = "Extensions de chiffrement";
+            EncryptionExtentionsButton.FontSize = 9;
+            BlacklistSoftwaresButton.Content = "Logiciels sur liste noire";
         }
         private void ShowBackupList()
         {
@@ -249,5 +266,7 @@ namespace Easysave_v2._0.view
                 }
             }
         }
+
+        
     }
 }
