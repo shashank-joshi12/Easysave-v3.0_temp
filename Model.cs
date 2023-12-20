@@ -270,6 +270,7 @@ namespace Easysave_v2._0.model
                 this.serializeObj = JsonConvert.SerializeObject(stateList.ToArray(), Formatting.Indented) + Environment.NewLine; //Serialization for writing to json file
 
                 File.WriteAllText(StatusFile, this.serializeObj); //Function to write to JSON file
+                
             }
 
 
@@ -429,7 +430,7 @@ namespace Easysave_v2._0.model
         {
             using (Process process = new Process())//Declaration of the process
             {
-                process.StartInfo.FileName = @"C:\Users\ratwo\source\repos\Easysave v2.0\Resources\CryptoSoft\CryptoSoft.exe"; //Calls the process that is CryptoSoft
+                process.StartInfo.FileName = @"..\..\..\Resources\CryptoSoft\CryptoSoft.exe"; //Calls the process that is CryptoSoft
                 process.StartInfo.Arguments = String.Format("\"{0}\"", sourceDir) + " " + String.Format("\"{0}\"", targetDir); //Preparation of variables for the process.
                 process.Start(); //Launching the process
                 process.Close();
