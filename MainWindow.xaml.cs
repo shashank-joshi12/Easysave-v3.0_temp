@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Easysave_v2._0.viewmodel;
 using Easysave_v2._0.model;
-
+using System.Windows.Forms;
 namespace Easysave_v2._0.view
 {
     /// <summary>
@@ -221,7 +221,33 @@ namespace Easysave_v2._0.view
 
         private void ChooseTargetPathButton_Click(object sender, RoutedEventArgs e)
         {
+            using (var folderBrowserDialog = new FolderBrowserDialog())
+            {
+                DialogResult result = folderBrowserDialog.ShowDialog();
 
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+                    
+                    string selectedFolderSourcePath = folderBrowserDialog.SelectedPath;
+                    TargetPathTextBox.Text = selectedFolderSourcePath;
+                }
+            }
+
+        }
+
+        private void ChooseSourcePathButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var folderBrowserDialog = new FolderBrowserDialog())
+            {
+                DialogResult result = folderBrowserDialog.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+
+                    string selectedFolderSourcePath = folderBrowserDialog.SelectedPath;
+                    SourcePathTextBox.Text = selectedFolderSourcePath;
+                }
+            }
         }
     }
 }
