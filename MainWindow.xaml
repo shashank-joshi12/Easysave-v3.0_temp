@@ -55,7 +55,7 @@
         </StackPanel>
         <Button Content="Button" HorizontalAlignment="Left" Height="30" Margin="10,95,0,0" VerticalAlignment="Top" Width="0"/>
         <Button x:Name="EncryptionExtentionsButton" Content="Encryption Extentions" HorizontalAlignment="Left" Height="30" Margin="10,95,0,0" VerticalAlignment="Top" Width="109" Background="{x:Null}" BorderBrush="White" Foreground="White" FontSize="10" FontFamily="Calibri" FontWeight="Bold" Click="EncryptionExtentionsButton_Click"/>
-        <TextBox x:Name="ResultTextBox" HorizontalAlignment="Left" Height="261" Margin="610,10,0,0" Text="Results" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Background="{x:Null}" BorderBrush="#FFF7F8F9" Foreground="#FFF7F8F9" SelectionBrush="#FF67737C" SelectionTextBrush="#FF4ECDB1" FontFamily="Calibri" FontSize="15"/>
+        <TextBox x:Name="ResultTextBox" HorizontalAlignment="Left" Height="222" Margin="610,10,0,0" Text="Results" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Background="{x:Null}" BorderBrush="#FFF7F8F9" Foreground="#FFF7F8F9" SelectionBrush="#FF67737C" SelectionTextBrush="#FF4ECDB1" FontFamily="Calibri" FontSize="15"/>
         <Button x:Name="BlacklistSoftwaresButton" Content="Blacklist Softwares" HorizontalAlignment="Left" Height="31" Margin="10,130,0,0" VerticalAlignment="Top" Width="109" Background="{x:Null}" BorderBrush="White" FontFamily="Calibri" FontSize="10" Foreground="White" FontWeight="Bold" Click="BlacklistSoftwaresButton_Click"/>
         <ListView x:Name="BackupJobsListView" HorizontalAlignment="Left" Height="251" Margin="130,152,0,0" VerticalAlignment="Top" Width="470" Loaded="BackupJobsListView_Loaded" Background="#FF4ECDB1" Foreground="White" BorderBrush="{x:Null}" FontFamily="Calibri" FontSize="15" FontWeight="Bold">
             <ListView.View>
@@ -66,6 +66,7 @@
         </ListView>
         <Button x:Name="ExitButton" Content="Exit" HorizontalAlignment="Left" Height="36" Margin="610,366,0,0" VerticalAlignment="Top" Width="148" BorderBrush="White" FontFamily="Calibri" FontSize="15" FontWeight="Bold" Foreground="White" Click="ExitButton_Click" Background="{x:Null}"/>
         <Button x:Name="ChooseSourcePathButton" Content="..." HorizontalAlignment="Left" Height="25" Margin="563,40,0,0" VerticalAlignment="Top" Width="37" Background="{x:Null}" BorderBrush="White" FontFamily="Calibri" FontSize="15" FontWeight="Bold" Foreground="White" Click="ChooseSourcePathButton_Click"/>
+        <Button x:Name="ChoosePriorityFilesButton" Content="Priority Files" HorizontalAlignment="Left" Height="31" Margin="10,166,0,0" VerticalAlignment="Top" Width="109" Background="{x:Null}" BorderBrush="White" FontFamily="Calibri" FontSize="10" Foreground="White" FontWeight="Bold" Click="ChoosePriorityFilesButton_Click"/>
         <Button x:Name="ChooseTargetPathButton" Content="..." HorizontalAlignment="Left" Height="25" Margin="563,70,0,0" VerticalAlignment="Top" Width="37" Background="{x:Null}" BorderBrush="White" Foreground="White" FontFamily="Calibri" FontSize="15" FontWeight="Bold" Click="ChooseTargetPathButton_Click"/>
 
     </Grid>

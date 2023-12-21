@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using Easysave_v2._0.viewmodel;
 using Easysave_v2._0.model;
 using System.Windows.Forms;
+using System.Diagnostics;
+using MessageBox = System.Windows.MessageBox;
+
 namespace Easysave_v2._0.view
 {
     /// <summary>
@@ -24,14 +27,27 @@ namespace Easysave_v2._0.view
     {
         public string language;
         public ViewModel viewModel;
-         public MainWindow()
+        public MainWindow()
         {
             InitializeComponent();
             ResizeMode = ResizeMode.NoResize;
             viewModel = new ViewModel();
             ShowBackupList();
+            Process currentProccess = Process.GetCurrentProcess(); 
+
+            Process[] runningProcesses = Process.GetProcesses();
+
+            foreach (Process p in runningProcesses)
+                if ((currentProccess.Id != p.Id) && (currentProccess.ProcessName == p.ProcessName)) 
+                {                          
+                    MessageBox.Show("An instance of the application is already running");
+                    this.Close();                    
+                }
+
+
 
         }
+        
         private void SaveBackupButton_Click(object sender, RoutedEventArgs e)
         {
             string saveName = "";
@@ -267,6 +283,9 @@ namespace Easysave_v2._0.view
             }
         }
 
-        
+        private void ChoosePriorityFilesButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("notepad.exe", @"..\..\..\Resources\PriorityExtension.json");
+        }
     }
 }

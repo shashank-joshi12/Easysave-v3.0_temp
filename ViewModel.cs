@@ -15,6 +15,7 @@ namespace Easysave_v2._0.viewmodel
         string[] blacklisted_app = Model.getBlackList();
         public string[] blacklitapp { get => blacklisted_app; set => blacklisted_app = value; }
 
+
         public ViewModel()
         {
             model = new Model();

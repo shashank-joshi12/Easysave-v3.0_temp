@@ -8,6 +8,7 @@ using System.Linq;
 using Newtonsoft.Json;
 
 
+
 namespace Easysave_v2._0.model
 {
     class Model
@@ -515,9 +516,5 @@ namespace Easysave_v2._0.model
 
             return false;
         }
-
-
-
-
     }
 }
