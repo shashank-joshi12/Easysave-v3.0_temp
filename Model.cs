@@ -369,27 +369,27 @@ namespace Easysave_v2._0.model
 
                     XmlElement logEntryElement = doc.CreateElement("LogEntry");
 
-                    XmlElement timestampElement = doc.CreateElement("Transfer Time");
+                    XmlElement timestampElement = doc.CreateElement("Transfer_Time");
                     timestampElement.InnerText = logEntry.TransferTime.ToString();
                     logEntryElement.AppendChild(timestampElement);
 
-                    XmlElement cryptTimeElement = doc.CreateElement("Encryption Time");
+                    XmlElement cryptTimeElement = doc.CreateElement("Encryption_Time");
                     timestampElement.InnerText = logEntry.CryptTime.ToString();
                     logEntryElement.AppendChild(timestampElement);
 
-                    XmlElement jobNameElement = doc.CreateElement("Backup Job Name");
+                    XmlElement jobNameElement = doc.CreateElement("Backup_Job_Name");
                     jobNameElement.InnerText = logEntry.JobName;
                     logEntryElement.AppendChild(jobNameElement);
 
-                    XmlElement sourceFolderElement = doc.CreateElement("Source Path");
+                    XmlElement sourceFolderElement = doc.CreateElement("Source_Path");
                     sourceFolderElement.InnerText = logEntry.SourceFolder;
                     logEntryElement.AppendChild(sourceFolderElement);
 
-                    XmlElement destinationFileElement = doc.CreateElement("Target Path");
+                    XmlElement destinationFileElement = doc.CreateElement("Target_Path");
                     destinationFileElement.InnerText = logEntry.DestinationFile;
                     logEntryElement.AppendChild(destinationFileElement);
 
-                    XmlElement folderSizeElement = doc.CreateElement("Total Size ");
+                    XmlElement folderSizeElement = doc.CreateElement("Total_Size");
                     folderSizeElement.InnerText = logEntry.FolderSize.ToString();
                     logEntryElement.AppendChild(folderSizeElement);
 
@@ -408,27 +408,27 @@ namespace Easysave_v2._0.model
 
                     XmlElement logEntryElement = doc.CreateElement("LogEntry");
 
-                    XmlElement timestampElement = doc.CreateElement("Transfer Time");
+                    XmlElement timestampElement = doc.CreateElement("Transfer_Time");
                     timestampElement.InnerText = logEntry.TransferTime.ToString();
                     logEntryElement.AppendChild(timestampElement);
 
-                    XmlElement cryptTimeElement = doc.CreateElement("Encryption Time");
+                    XmlElement cryptTimeElement = doc.CreateElement("Encryption_Time");
                     timestampElement.InnerText = logEntry.CryptTime.ToString();
                     logEntryElement.AppendChild(timestampElement);
 
-                    XmlElement jobNameElement = doc.CreateElement("Backup Job Name");
+                    XmlElement jobNameElement = doc.CreateElement("Backup_Job_Name");
                     jobNameElement.InnerText = logEntry.JobName;
                     logEntryElement.AppendChild(jobNameElement);
 
-                    XmlElement sourceFolderElement = doc.CreateElement("Source Path");
+                    XmlElement sourceFolderElement = doc.CreateElement("Source_Path");
                     sourceFolderElement.InnerText = logEntry.SourceFolder;
                     logEntryElement.AppendChild(sourceFolderElement);
 
-                    XmlElement destinationFileElement = doc.CreateElement("Target Path");
+                    XmlElement destinationFileElement = doc.CreateElement("Target_Path");
                     destinationFileElement.InnerText = logEntry.DestinationFile;
                     logEntryElement.AppendChild(destinationFileElement);
 
-                    XmlElement folderSizeElement = doc.CreateElement("Total Size ");
+                    XmlElement folderSizeElement = doc.CreateElement("Total_Size");
                     folderSizeElement.InnerText = logEntry.FolderSize.ToString();
                     logEntryElement.AppendChild(folderSizeElement);
 
