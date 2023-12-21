@@ -122,15 +122,32 @@ namespace Easysave_v2._0.model
 
                 UpdateBackupStatusFile(); //Call of the function to start the state file system
 
-                if (CryptExt(Path.GetExtension(file.Name)))
+                if (UsePriorityExtension(Path.GetExtension(file.Name)))
                 {
-                    cryptwatch.Start();
-                    Encrypt(statusData.SourceFile, tempPath);
-                    cryptwatch.Stop();
+                    if (CryptExt(Path.GetExtension(file.Name)))
+                    {
+                        cryptwatch.Start();
+                        Encrypt(statusData.SourceFile, tempPath);
+                        cryptwatch.Stop();
+                    }
+                    else
+                    {
+                        file.CopyTo(tempPath, true); //Function that allows you to copy the file to its new folder.
+                    }
+
                 }
                 else
                 {
-                    file.CopyTo(tempPath, true); //Function that allows you to copy the file to its new folder.
+                    if (CryptExt(Path.GetExtension(file.Name)))
+                    {
+                        cryptwatch.Start();
+                        Encrypt(statusData.SourceFile, tempPath);
+                        cryptwatch.Stop();
+                    }
+                    else
+                    {
+                        file.CopyTo(tempPath, true); //Function that allows you to copy the file to its new folder.
+                    }
                 }
 
                 nbfiles++;
@@ -209,15 +226,31 @@ namespace Easysave_v2._0.model
 
                 UpdateBackupStatusFile();//Call of the function to start the state file system
 
-                if (CryptExt(Path.GetExtension(v.Name)))
+                if (UsePriorityExtension(Path.GetExtension(v.Name)))
                 {
-                    cryptwatch.Start();
-                    Encrypt(statusData.SourceFile, tempPath);
-                    cryptwatch.Stop();
+                    if (CryptExt(Path.GetExtension(v.Name)))
+                    {
+                        cryptwatch.Start();
+                        Encrypt(statusData.SourceFile, tempPath);
+                        cryptwatch.Stop();
+                    }
+                    else
+                    {
+                        v.CopyTo(tempPath, true); //Function that allows you to copy the file to its new folder.
+                    }
                 }
                 else
                 {
-                    v.CopyTo(tempPath, true); //Function that allows you to copy the file to its new folder.
+                    if (CryptExt(Path.GetExtension(v.Name)))
+                    {
+                        cryptwatch.Start();
+                        Encrypt(statusData.SourceFile, tempPath);
+                        cryptwatch.Stop();
+                    }
+                    else
+                    {
+                        v.CopyTo(tempPath, true); //Function that allows you to copy the file to its new folder.
+                    }
                 }
                 size += v.Length;
                 nbfiles++;
@@ -289,7 +322,7 @@ namespace Easysave_v2._0.model
                 TargetDir = targetdir,
                 BackupDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
                 TotalSize = TotalSize,
-                TransactionTime = elapsedTimeBackup,
+                ElapsedTime = elapsedTimeBackup,
                 CryptTime = elapsedTimeEncryption,
             };
 
@@ -509,6 +542,32 @@ namespace Easysave_v2._0.model
             foreach (string process in blacklist_app)
             {
                 if (Process.GetProcessesByName(process).Length > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        public static string[] getPriorityExtensions() //Function that allows to recover the extensions of the files to be prioritized
+        {
+            using (StreamReader reader = new StreamReader(@"..\..\..\Resources\PriorityExtension.json"))//Function to read the json file
+            {
+                FilePriorityFormat[] itemsPriorityList;
+                string[] priorityFileList;
+                string json = reader.ReadToEnd();
+                List<FilePriorityFormat> items = JsonConvert.DeserializeObject<List<FilePriorityFormat>>(json);
+                itemsPriorityList = items.ToArray();
+                priorityFileList = itemsPriorityList[0].filePriorityExtension.Split(',');
+
+                return priorityFileList;
+            }
+        }
+        public static bool UsePriorityExtension(string extension) //Function that compares the extensions of the file to be prioritized json and that of the saved file.
+        {
+            foreach (string priorityExtension in getPriorityExtensions())
+            {
+                if (priorityExtension == extension)
                 {
                     return true;
                 }

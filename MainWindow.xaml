@@ -49,7 +49,7 @@
         </Button>
         <TextBlock HorizontalAlignment="Left" Height="72" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" FontFamily="Calibri" FontSize="25" FontWeight="Bold" Foreground="White" Background="#FF37B4A3"><Run Text=" EasySave "/><Run Text="    "/><Run Text=" "/><LineBreak/><Run Text="    "/><Run Text=" v"/><Run Language="en-in" Text="3"/><Run Text=".0"/></TextBlock>
         <TextBlock x:Name="LogFileTextBlock" HorizontalAlignment="Left" Margin="130,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" Height="25" FontFamily="Calibri" FontSize="13" FontWeight="Bold" Foreground="White"><Run Text="Log File Type"/><Run Language="en-in" Text=":"/><LineBreak/><Run/></TextBlock>
-        <StackPanel>
+        <StackPanel Margin="0,0,0,293">
             <RadioButton x:Name="JSONRadioButton" Content="JSON" HorizontalAlignment="Left" Margin="272,131,0,0" VerticalAlignment="Top" Background="#FF4ECDB1" BorderBrush="{x:Null}" Foreground="White" FontFamily="Calibri" FontSize="13" FontWeight="Normal" RenderTransformOrigin="0.622,-1.566"/>
             <RadioButton x:Name="XAMLRadioButton" Content="XAML" Margin="0,-15,0,0" Foreground="White" BorderBrush="{x:Null}" Background="#FF4ECDB1" FontFamily="Calibri" FontSize="13" FontWeight="Normal" Width="65"/>
         </StackPanel>
@@ -57,7 +57,7 @@
         <Button x:Name="EncryptionExtentionsButton" Content="Encryption Extentions" HorizontalAlignment="Left" Height="30" Margin="10,95,0,0" VerticalAlignment="Top" Width="109" Background="{x:Null}" BorderBrush="White" Foreground="White" FontSize="10" FontFamily="Calibri" FontWeight="Bold" Click="EncryptionExtentionsButton_Click"/>
         <TextBox x:Name="ResultTextBox" HorizontalAlignment="Left" Height="222" Margin="610,10,0,0" Text="Results" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Background="{x:Null}" BorderBrush="#FFF7F8F9" Foreground="#FFF7F8F9" SelectionBrush="#FF67737C" SelectionTextBrush="#FF4ECDB1" FontFamily="Calibri" FontSize="15"/>
         <Button x:Name="BlacklistSoftwaresButton" Content="Blacklist Softwares" HorizontalAlignment="Left" Height="31" Margin="10,130,0,0" VerticalAlignment="Top" Width="109" Background="{x:Null}" BorderBrush="White" FontFamily="Calibri" FontSize="10" Foreground="White" FontWeight="Bold" Click="BlacklistSoftwaresButton_Click"/>
-        <ListView x:Name="BackupJobsListView" HorizontalAlignment="Left" Height="251" Margin="130,152,0,0" VerticalAlignment="Top" Width="470" Loaded="BackupJobsListView_Loaded" Background="#FF4ECDB1" Foreground="White" BorderBrush="{x:Null}" FontFamily="Calibri" FontSize="15" FontWeight="Bold">
+        <ListView x:Name="BackupJobsListView" HorizontalAlignment="Left" Height="250" Margin="130,152,0,0" VerticalAlignment="Top" Width="470" Loaded="BackupJobsListView_Loaded" Background="#FF4ECDB1" Foreground="White" BorderBrush="{x:Null}" FontFamily="Calibri" FontSize="15" FontWeight="Bold">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Backup Job Name" DisplayMemberBinding="{Binding Name}" Width="476"/>

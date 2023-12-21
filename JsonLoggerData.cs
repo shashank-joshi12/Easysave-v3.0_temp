@@ -12,7 +12,7 @@ namespace Easysave_v2._0.model
         public string TargetDir { get; set; }
         public string SaveName { get; set; }
         public string BackupDate { get; set; }
-        public string TransactionTime { get; set; }
+        public string ElapsedTime { get; set; }
         public long TotalSize { get; set; }
         public string CryptTime { get; set; }
 
