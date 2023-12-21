@@ -76,8 +76,9 @@ namespace Easysave_v2._0.view
                 else
                 {
                     int type = 1;
+                    
 
-                    viewModel.AddSaveModel(type, saveName, sourceDir, targetDir); //Function to add the backup
+                    viewModel.AddSaveModel(type, saveName, sourceDir, targetDir, XAMLRadioButton.IsChecked.Value); //Function to add the backup
 
                     if (language == "fr")//Condition for the display of the success message according to the language chosen by the user.
                     {
@@ -108,7 +109,7 @@ namespace Easysave_v2._0.view
                 else
                 {
                     int type = 2;
-                    viewModel.AddSaveModel(type, saveName, sourceDir, targetDir);//Function to add the backup
+                    viewModel.AddSaveModel(type, saveName, sourceDir, targetDir, XAMLRadioButton.IsChecked.Value);//Function to add the backup
 
                     if (language == "fr")//Condition for the display of the success message according to the language chosen by the user.
                     {

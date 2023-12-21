@@ -6,8 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
-
-
+using System.Xml;
 
 namespace Easysave_v2._0.model
 {
@@ -301,7 +300,7 @@ namespace Easysave_v2._0.model
 
                 }
 
-                this.serializeObj = JsonConvert.SerializeObject(stateList.ToArray(), Formatting.Indented) + Environment.NewLine; //Serialization for writing to json file
+                this.serializeObj = JsonConvert.SerializeObject(stateList.ToArray(), Newtonsoft.Json.Formatting.Indented) + Environment.NewLine; //Serialization for writing to json file
 
                 File.WriteAllText(StatusFile, this.serializeObj); //Function to write to JSON file
                 
@@ -309,7 +308,7 @@ namespace Easysave_v2._0.model
 
 
         }
-        public void UpdateLogFile(string savename, string sourcedir, string targetdir)//Function to allow modification of the log file
+        public void UpdateLogFile(string savename, string sourcedir, string targetdir, bool logType)//Function to allow modification of the log file
         {
             Stopwatch stopwatch = new Stopwatch(); //Declaration of the stopwatch
             string elapsedTimeBackup = String.Format("{0:00}:{1:00}:{2:00}.{3:00}", TimeTakenForBackup.Hours, TimeTakenForBackup.Minutes, TimeTakenForBackup.Seconds, TimeTakenForBackup.Milliseconds / 10);
@@ -329,7 +328,7 @@ namespace Easysave_v2._0.model
             List<JsonLoggerData> loggerDataList = new List<JsonLoggerData>();
             this.serializeObj = null;
             var directory = System.IO.Path.GetDirectoryName(LogDir + @"/Logs/");
-            var path = directory + @"DailyLogs_" + DateTime.Now.ToString("dd-MM-yyyy") + ".json";
+            var path = directory + @"DailyLogs_JSON_" + DateTime.Now.ToString("dd-MM-yyyy") + ".json";
 
             if (!File.Exists(path))
             {
@@ -346,8 +345,100 @@ namespace Easysave_v2._0.model
                 }
             }
             loggerDataList.Add(loggerData); //Allows you to prepare the objects for the json filling
-            this.serializeObj = JsonConvert.SerializeObject(loggerDataList.ToArray(), Formatting.Indented) + Environment.NewLine; //Serialization for writing to json file
+            this.serializeObj = JsonConvert.SerializeObject(loggerDataList.ToArray(), Newtonsoft.Json.Formatting.Indented) + Environment.NewLine; //Serialization for writing to json file
             File.WriteAllText(path, this.serializeObj); //Function to write to JSON file
+
+
+            if (logType)
+            {
+                var pathXML = directory + @"DailyLogs_XML_" + DateTime.Now.ToString("dd-MM-yyyy") + ".xml";
+                var logEntry = new //define the value for the log
+                {
+                    JobName = loggerData.SaveName,
+                    SourceFolder = loggerData.SourceDir,
+                    DestinationFile = loggerData.TargetDir,
+                    FolderSize = loggerData.TotalSize,
+                    TransferTime = loggerData.ElapsedTime,
+                    CryptTime = loggerData.CryptTime
+                };
+
+                if (File.Exists(pathXML))
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(pathXML);
+
+                    XmlElement logEntryElement = doc.CreateElement("LogEntry");
+
+                    XmlElement timestampElement = doc.CreateElement("Transfer Time");
+                    timestampElement.InnerText = logEntry.TransferTime.ToString();
+                    logEntryElement.AppendChild(timestampElement);
+
+                    XmlElement cryptTimeElement = doc.CreateElement("Encryption Time");
+                    timestampElement.InnerText = logEntry.CryptTime.ToString();
+                    logEntryElement.AppendChild(timestampElement);
+
+                    XmlElement jobNameElement = doc.CreateElement("Backup Job Name");
+                    jobNameElement.InnerText = logEntry.JobName;
+                    logEntryElement.AppendChild(jobNameElement);
+
+                    XmlElement sourceFolderElement = doc.CreateElement("Source Path");
+                    sourceFolderElement.InnerText = logEntry.SourceFolder;
+                    logEntryElement.AppendChild(sourceFolderElement);
+
+                    XmlElement destinationFileElement = doc.CreateElement("Target Path");
+                    destinationFileElement.InnerText = logEntry.DestinationFile;
+                    logEntryElement.AppendChild(destinationFileElement);
+
+                    XmlElement folderSizeElement = doc.CreateElement("Total Size ");
+                    folderSizeElement.InnerText = logEntry.FolderSize.ToString();
+                    logEntryElement.AppendChild(folderSizeElement);
+
+                    
+                    doc.DocumentElement?.AppendChild(logEntryElement);
+
+
+                    doc.Save(pathXML);
+                }
+                else
+                {
+                    XmlDocument doc = new XmlDocument();
+
+                    XmlElement root = doc.CreateElement("LogEntries");
+                    doc.AppendChild(root);
+
+                    XmlElement logEntryElement = doc.CreateElement("LogEntry");
+
+                    XmlElement timestampElement = doc.CreateElement("Transfer Time");
+                    timestampElement.InnerText = logEntry.TransferTime.ToString();
+                    logEntryElement.AppendChild(timestampElement);
+
+                    XmlElement cryptTimeElement = doc.CreateElement("Encryption Time");
+                    timestampElement.InnerText = logEntry.CryptTime.ToString();
+                    logEntryElement.AppendChild(timestampElement);
+
+                    XmlElement jobNameElement = doc.CreateElement("Backup Job Name");
+                    jobNameElement.InnerText = logEntry.JobName;
+                    logEntryElement.AppendChild(jobNameElement);
+
+                    XmlElement sourceFolderElement = doc.CreateElement("Source Path");
+                    sourceFolderElement.InnerText = logEntry.SourceFolder;
+                    logEntryElement.AppendChild(sourceFolderElement);
+
+                    XmlElement destinationFileElement = doc.CreateElement("Target Path");
+                    destinationFileElement.InnerText = logEntry.DestinationFile;
+                    logEntryElement.AppendChild(destinationFileElement);
+
+                    XmlElement folderSizeElement = doc.CreateElement("Total Size ");
+                    folderSizeElement.InnerText = logEntry.FolderSize.ToString();
+                    logEntryElement.AppendChild(folderSizeElement);
+
+                    root.AppendChild(logEntryElement);
+
+                    doc.Save(pathXML);
+
+                }
+
+            }
 
             stopwatch.Reset(); // Reset of stopwatch
         }
@@ -373,7 +464,7 @@ namespace Easysave_v2._0.model
             }
             backupList.Add(backupJob); //Allows you to prepare the objects for the json filling
 
-            this.serializeObj = JsonConvert.SerializeObject(backupList.ToArray(), Formatting.Indented) + Environment.NewLine; //Serialization for writing to json file
+            this.serializeObj = JsonConvert.SerializeObject(backupList.ToArray(), Newtonsoft.Json.Formatting.Indented) + Environment.NewLine; //Serialization for writing to json file
             File.WriteAllText(backupJobsFile, this.serializeObj); // Writing to the json file
 
             statusData = new StatusData(this.SaveName); //Class initiation
@@ -404,7 +495,7 @@ namespace Easysave_v2._0.model
             this.statusData.SaveState = false;
             stateList.Add(this.statusData); //Allows you to prepare the objects for the json filling
 
-            this.serializeObj = JsonConvert.SerializeObject(stateList.ToArray(), Formatting.Indented) + Environment.NewLine; //Serialization for writing to json file
+            this.serializeObj = JsonConvert.SerializeObject(stateList.ToArray(), Newtonsoft.Json.Formatting.Indented) + Environment.NewLine; //Serialization for writing to json file
             File.WriteAllText(backupStatusFile, this.serializeObj);// Writing to the json file
         }
         public void LoadSave(string backupname) //Function that allows you to load backup jobs
@@ -423,7 +514,7 @@ namespace Easysave_v2._0.model
                 {
                     if (obj.SaveName == backupname) //Check to have the correct name of the backup
                     {
-                        backupJob = new BackupJob(obj.SaveName, obj.SourceDir, obj.TargetDir, obj.Type);//Function that allows you to retrieve information about the backup
+                        backupJob = new BackupJob(obj.SaveName, obj.SourceDir, obj.TargetDir, obj.Type, obj.LogType);//Function that allows you to retrieve information about the backup
 
                         break;
                     }
@@ -434,14 +525,14 @@ namespace Easysave_v2._0.model
             {
                 StatusFile = backupJob.SaveName;
                 CompleteSave(backupJob.SourceDir, backupJob.TargetDir, true, false); //Calling the function to run the full backup
-                UpdateLogFile(backupJob.SaveName, backupJob.SourceDir, backupJob.TargetDir); //Call of the function to start the modifications of the log file
+                UpdateLogFile(backupJob.SaveName, backupJob.SourceDir, backupJob.TargetDir, backupJob.LogType); //Call of the function to start the modifications of the log file
                 Console.WriteLine("Saved Successfull !"); //Satisfaction message display
             }
             else //If this is the wrong guy then, it means it's a differential backup
             {
                 StatusFile = backupJob.SaveName;
                 DifferentialSave(backupJob.SourceDir, backupJob.TargetDir, backupJob.TargetDir); //Calling the function to start the differential backup
-                UpdateLogFile(backupJob.SaveName, backupJob.SourceDir, backupJob.TargetDir); //Call of the function to start the modifications of the log file
+                UpdateLogFile(backupJob.SaveName, backupJob.SourceDir, backupJob.TargetDir, backupJob.LogType); //Call of the function to start the modifications of the log file
                 Console.WriteLine("Saved Successfull !"); //Satisfaction message display
             }
 

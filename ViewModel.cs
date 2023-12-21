@@ -20,10 +20,10 @@ namespace Easysave_v2._0.viewmodel
         {
             model = new Model();
         }
-        public void AddSaveModel(int type, string saveName, string sourceDir, string targetDir)//Function that allows you to add a backup
+        public void AddSaveModel(int type, string saveName, string sourceDir, string targetDir, bool logType)//Function that allows you to add a backup
         {
             model.SaveName = saveName;
-            BackupJob backup = new BackupJob(saveName, sourceDir, targetDir, type);
+            BackupJob backup = new BackupJob(saveName, sourceDir, targetDir, type, logType);
             model.AddSave(backup); // Calling the function to add a backup job
         }
         public List<string> ListBackup()//Function that lets you know the lists of the names of the backups.
