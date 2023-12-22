@@ -615,7 +615,7 @@ namespace Easysave_v2._0.model
         }
         public static string[] getBlackList()//Function that allows to recover software that is blacklisted.
         {
-            using (StreamReader reader = new StreamReader(@"C:\Users\ratwo\source\repos\Easysave v2.0\Resources\BlackList.json"))//Function to read the json file
+            using (StreamReader reader = new StreamReader(@"..\..\..\Resources\BlackList.json"))//Function to read the json file
             {
                 BlackListFormat[] item_blacklist;
                 string[] blacklist_array;

@@ -51,7 +51,7 @@
         <TextBlock x:Name="LogFileTextBlock" HorizontalAlignment="Left" Margin="130,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" Height="25" FontFamily="Calibri" FontSize="13" FontWeight="Bold" Foreground="White"><Run Text="Log File Type"/><Run Language="en-in" Text=":"/><LineBreak/><Run/></TextBlock>
         <StackPanel>
             <RadioButton x:Name="JSONRadioButton" Content="JSON" HorizontalAlignment="Left" Margin="272,131,0,0" VerticalAlignment="Top" Background="#FF4ECDB1" BorderBrush="{x:Null}" Foreground="White" FontFamily="Calibri" FontSize="13" FontWeight="Normal" RenderTransformOrigin="0.622,-1.566"/>
-            <RadioButton x:Name="XAMLRadioButton" Content="XAML" Margin="0,-15,0,0" Foreground="White" BorderBrush="{x:Null}" Background="#FF4ECDB1" FontFamily="Calibri" FontSize="13" FontWeight="Normal" Width="65"/>
+            <RadioButton x:Name="XAMLRadioButton" Content="XML" Margin="-7,-15,0,0" Foreground="White" BorderBrush="{x:Null}" Background="#FF4ECDB1" FontFamily="Calibri" FontSize="13" FontWeight="Normal" Width="65"/>
         </StackPanel>
         <Button Content="Button" HorizontalAlignment="Left" Height="30" Margin="10,95,0,0" VerticalAlignment="Top" Width="0"/>
         <Button x:Name="EncryptionExtentionsButton" Content="Encryption Extentions" HorizontalAlignment="Left" Height="30" Margin="10,95,0,0" VerticalAlignment="Top" Width="109" Background="{x:Null}" BorderBrush="White" Foreground="White" FontSize="10" FontFamily="Calibri" FontWeight="Bold" Click="EncryptionExtentionsButton_Click"/>
